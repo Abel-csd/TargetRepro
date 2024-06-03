@@ -16,8 +16,8 @@ jobs:
     - name: Checkout Target Repo
       uses: actions/checkout@v2
       with:
-        repository: Abel-csd/TargetRepro
-        token: ${{ secrets.PAT }}
+        ref: main
+        
     - name: Check if TargetFolder exists
       id: check_target_folder
       run: |
@@ -32,7 +32,7 @@ jobs:
       run: git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Pull Subtree
-      run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main --allow-unrelated-histories
+      run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Commit change
       run: |
