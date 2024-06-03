@@ -21,24 +21,8 @@ jobs:
         repository: Abel-csd/TargetRepro
         token: ${{ secrets.PAT }}
 
-    - name: Clone Origin Repo
-      run: git clone https://github.com/Abel-csd/OriginRepro.git origin-repo
-
     - name: Add Subtree
-      run: |
-        cd origin-repo
-        git checkout main
-        git subtree split --prefix=TargetFolder --branch=subtree-temp
-        git push origin subtree-temp:subtree-temp
+      run: git subtree add --prefix=TargetFolder https://github.com/Abel-csd/OriginRepro.git main
 
-    - name: Merge Subtree
-      run: |
-        git remote add origin-repo https://github.com/Abel-csd/OriginRepro.git
-        git fetch origin-repo
-        git merge -s ours --no-commit subtree-temp
-        git read-tree --prefix=TargetFolder -u subtree-temp
-        git commit -m "Merge subtree from OriginRepro"
-        git push origin main
-
-    - name: Clean Up
-      run: rm -rf origin-repo
+    - name: Pull Subtree
+      run: git subtree pull --prefix=TargetFolder https://github.com/Abel-csd/OriginRepro.git main
