@@ -39,7 +39,7 @@ jobs:
       run: git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Pull Subtree
-      run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+      run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main --allow-unrelated-histories
 
     - name: Git Push Action
       run: git push
