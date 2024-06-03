@@ -30,7 +30,7 @@ jobs:
     - name: Pull Subtree
       run: |
         git config --global user.email "csd0108@163.com"
-        git config --global user.name "Abel-cssd"  
+        git config --global user.name "Abel-csd"  
 
     - name: Add Subtree
       if: steps.check_target_folder.outputs.exists != 'true'
@@ -39,8 +39,13 @@ jobs:
     - name: Pull Subtree
       run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
-    - name: Commit change
-      run: |
-        git add .
-        git commit -m "Sync changes from OriginRepro to TargetFolder"
-        git push https://username:${{ secrets.PAT }}@github.com/Abel-csd/TargetRepro.git main
+      # Add, commit, and push the changes using the PAT
+    - name: Add & Commit changes
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: Abel-csd
+        author_email: csd0108@163.com
+        mssage: "Synced changes from upstream repo"
+        add: 'TargetFolder/*'
+        push: true
+        GITHUB_TOKEN: ${{ env.PAT }}
