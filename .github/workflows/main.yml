@@ -30,3 +30,9 @@ jobs:
 
     - name: Pull Subtree
       run: git subtree pull --prefix=TargetFolder https://username:${{ env.PAT }}@github.com/Abel-csd/OriginRepro.git main
+
+    - name: Commit change
+      run: |
+        git add .
+        git commit -m "Sync changes from OriginRepro to TargetFolder"
+        git push
