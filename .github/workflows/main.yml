@@ -1,8 +1,7 @@
 name: Pull Origin Code
 
 on:
-  schedule:
-    - cron: '*/5 * * * *' # 每5分钟执行一次
+  workflow_dispatch:
 
 jobs:
   pull-origin-code:
