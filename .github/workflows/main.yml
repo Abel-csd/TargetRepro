@@ -10,8 +10,6 @@ jobs:
       contents: write
       actions: read
       security-events: write
-    env:
-      PAT: ${{ secrets.PAT }}  # Define the secret as a job-level variable
 
     # Sync from Origin repo
     steps:
@@ -19,16 +17,16 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: Abel-csd/TargetRepro
-        token: ${{ env.PAT }}
+        token: ${{ secrets.PAT }}
     
     - name: Add Subtree
-      run: git subtree add --prefix=TargetFolder https://username:${{ env.PAT }}@github.com/Abel-csd/OriginRepro.git main
+      run: git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Pull Subtree
-      run: git subtree pull --prefix=TargetFolder https://username:${{ env.PAT }}@github.com/Abel-csd/OriginRepro.git main
+      run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Commit change
       run: |
         git add .
         git commit -m "Sync changes from OriginRepro to TargetFolder"
-        git push origin main
+        git push https://username:${{ secrets.PAT }}@github.com/Abel-csd/TargetRepro.git main
