@@ -35,4 +35,4 @@ jobs:
       run: |
         git add .
         git commit -m "Sync changes from OriginRepro to TargetFolder"
-        git push
+        git push origin main
