@@ -21,4 +21,4 @@ jobs:
         run: git remote add origin-repro https://github.com/Abel-csd/OriginRepro.git
 
       - name: Pull Origin Code
-        run: git subtree pull --prefix=Test origin-repro main --squash
+        run: git subtree pull --prefix=TargetFolder origin-repro main --squash
