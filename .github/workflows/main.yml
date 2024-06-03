@@ -20,7 +20,10 @@ jobs:
       with:
         repository: Abel-csd/TargetRepro
         token: ${{ secrets.PAT }}
-
+    - name: Config auth
+      run: git config --global user.email "csd0108@163.com"
+           git config --global user.name "Abel-csd"
+    
     - name: Add Subtree
       run: git subtree add --prefix=TargetFolder https://username:${{ env.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
