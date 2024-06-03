@@ -39,13 +39,19 @@ jobs:
     - name: Pull Subtree
       run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
-      # Add, commit, and push the changes using the PAT
-    - name: Add & Commit changes
-      uses: EndBug/add-and-commit@v7
+    - name: Git Push Action
+      # You may pin to the exact commit or the version.
+      # uses: x-actions/git-push@ba04e59cd92b579c1df53fa8d398bec56f310906
+      uses: x-actions/git-push@v1.0
       with:
-        author_name: Abel-csd
-        author_email: csd0108@163.com
-        mssage: "Synced changes from upstream repo"
-        add: 'TargetFolder/*'
-        push: true
-        GITHUB_TOKEN: ${{ env.PAT }}
+        # git user email
+        GITHUB_EMAIL: csd0108@163.com
+        # git use username
+        GITHUB_USERNAME: Abel-csd
+        # https:/<token>@github.com/owner/repo.git
+        PUBLISH_REPO: https://username:${{ secrets.PAT }}@github.com/Abel-csd/TargetRepro.git
+        # git branch
+        PUBLISH_BRANCH: main
+        # dir to publish
+        PUBLISH_DIR: TargetFolder
+          
