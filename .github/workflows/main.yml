@@ -22,7 +22,7 @@ jobs:
         token: ${{ secrets.PAT }}
 
     - name: Add Subtree
-      run: git subtree add --prefix=TargetFolder https://github.com/Abel-csd/OriginRepro.git main
+      run: git subtree add --prefix=TargetFolder https://username:${{ env.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Pull Subtree
-      run: git subtree pull --prefix=TargetFolder https://github.com/Abel-csd/OriginRepro.git main
+      run: git subtree pull --prefix=TargetFolder https://username:${{ env.PAT }}@github.com/OriginRepro.git main
