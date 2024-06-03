@@ -1,0 +1,24 @@
+name: Pull Origin Code
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # 每5分钟执行一次
+
+jobs:
+  pull-origin-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Add Origin Remote
+        run: git remote add origin-repro https://github.com/Abel-csd/OriginRepro.git
+
+      - name: Pull Origin Code
+        run: git subtree pull --prefix=Test origin-repro main --squash
