@@ -18,20 +18,27 @@ jobs:
       with:
         ref: main
               
-    - name: nxtlvlsoftware/git-subtree
-      # You may pin to the exact commit or the version.
-      # uses: NxtLvLSoftware/git-subtree-action@3d555981a570a2275a91c07b04b38d5e90d48c05
-      uses: NxtLvLSoftware/git-subtree-action@1.1
+    - name: jmadler/git-subtree-action
+    # You may pin to the exact commit or the version.
+    # uses: jmadler/git-subtree-action@12a1602b9ad34a4241ac803ac8771bfcf33261c1
+      uses: jmadler/git-subtree-action@1.0
       with:
-        # Child repository to sync the subtree to (eg. owner/repository.)
+        # Token
+        github_token: ${{ secrets.PAT }}
+        # Git User Name
+        git_name: Abel-csd
+        # Git User Email
+        git_email: csd0108@163.com
+        # Repository
         repo: https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git
-        # Path prefix in parent repo to split into child subtree (eg. src/PackageName.)
-        path: TargetFolder
-        # Deployment SSH key for pushing to child repo (checkout out deployment tokens for single repos or bot accounts for multi-repos/orgs.)
-        deploy_key: ${{ secrets.PAT }}
-        # Create (or mirror) a tag on the child subtree repository (branch or tag ref that triggered the workflow when true.)
-        tag: false
-        # Force push to the child subtree repository (recommended for pure downstream mirrors.)
+        # Action
+        action: pull
+        # Branch, Commit, Ref, or Refspec
+        position: main
+        # Prefix
+        prefix: TargetFolder
+        # Force the action
         force: false
-        # Branch of child subtree repository (default is branch or tag ref that triggered the workflow.)
-        branch: main         
+        # Squash the merge
+        squash: false
+            
