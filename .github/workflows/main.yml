@@ -18,15 +18,5 @@ jobs:
         git clone https://username:${{ secrets.PAT }}@github.com/Abel-csd/TargetRepro.git
         cd TargetRepro
         git checkout main
-
-    - name: Add Subtree
-      if: steps.check_target_folder.outputs.exists != 'true'
-      run:
-        git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
-        
-    - name: Pull Subtree
-      run: |
         git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
-    
-    - name: Push Change
-      run: git push
+        git push
