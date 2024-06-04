@@ -1,0 +1,24 @@
+# Workflow to sync changes from source repo        
+name: AutoSync_ACTS-VAT-Tax-Accelerator
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+      actions: read
+      security-events: write
+
+    # Sync from Origin repo
+    steps:
+    - name: Checkout
+      run: |
+        git config --global user.email "csd0108@163.com"
+        git config --global user.name "Abel-csd"
+        git clone https://username:${{ secrets.GITHUBPAT }}@github.com/microsoft/ACTS-Solutions.git
+        cd TargetRepro
+        git checkout main
+        git subtree pull --prefix=ACTS-VAT-Tax-Accelerator https://username:${{ secrets.GITHUBPAT }}@github.com/HMXCorp/ACTS-VAT-Tax-Accelerator.git main
+        #git push
