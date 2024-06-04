@@ -39,10 +39,14 @@ jobs:
 
     - name: Add Subtree
       if: steps.check_target_folder.outputs.exists != 'true'
-      run: git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+      run:
+        git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Pull Subtree
-      run: git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+      run: |
+        git checkout main
+        git pull
+        git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Git Push Action
       run: git push
