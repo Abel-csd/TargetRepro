@@ -24,7 +24,7 @@ jobs:
         
     - name: Checkout
       run: |
-        git checkout main
+        git checkout https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
 
     - name: Add Subtree
       if: steps.check_target_folder.outputs.exists != 'true'
@@ -35,4 +35,5 @@ jobs:
       run: |
         git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
     
-            
+    - name: Push Change
+      run: git push
