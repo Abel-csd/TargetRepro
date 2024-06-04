@@ -38,7 +38,7 @@ jobs:
         # Prefix
         prefix: TargetFolder
         # Force the action
-        force: false
+        force: true
         # Squash the merge
         squash: false
             
