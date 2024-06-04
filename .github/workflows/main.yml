@@ -13,32 +13,26 @@ jobs:
 
     # Sync from Origin repo
     steps:
-    - name: Checkout Target Repo
-      uses: actions/checkout@v2
-      with:
-        ref: main
-              
-    - name: jmadler/git-subtree-action
-    # You may pin to the exact commit or the version.
-    # uses: jmadler/git-subtree-action@12a1602b9ad34a4241ac803ac8771bfcf33261c1
-      uses: jmadler/git-subtree-action@1.0
-      with:
-        # Token
-        github_token: ${{ secrets.PAT }}
-        # Git User Name
-        git_name: Abel-csd
-        # Git User Email
-        git_email: csd0108@163.com
-        # Repository
-        repo: https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git
-        # Action
-        action: pull
-        # Branch, Commit, Ref, or Refspec
-        position: main
-        # Prefix
-        prefix: TargetFolder
-        # Force the action
-        force: true
-        # Squash the merge
-        squash: false
+    - name: Check if TargetFolder exists
+      id: check_target_folder
+      run: |
+        if [ -d "TargetFolder" ]; then
+          echo "::set-output name=exists::true"
+        else
+          echo "::set-output name=exists::false"
+        fi
+        
+    - name: Pull Subtree
+      run: |
+        git checkout main
+
+    - name: Add Subtree
+      if: steps.check_target_folder.outputs.exists != 'true'
+      run:
+        git subtree add --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+        
+    - name: Pull Subtree
+      run: |
+        git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+    
             
