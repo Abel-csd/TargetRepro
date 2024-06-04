@@ -24,7 +24,8 @@ jobs:
         
     - name: Checkout
       run: |
-        git checkout https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+        git clone https://username:${{ secrets.PAT }}@github.com/Abel-csd/TargetRepro.git
+        git checkout main
 
     - name: Add Subtree
       if: steps.check_target_folder.outputs.exists != 'true'
