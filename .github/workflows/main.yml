@@ -19,4 +19,6 @@ jobs:
         cd TargetRepro
         git checkout main
         git subtree pull --prefix=TargetFolder https://username:${{ secrets.PAT }}@github.com/Abel-csd/OriginRepro.git main
+        git config --global user.email "csd0108@163.com"
+        git config --global user.name "Abel-csd"
         git push
