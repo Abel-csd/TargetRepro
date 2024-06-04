@@ -22,7 +22,7 @@ jobs:
           echo "::set-output name=exists::false"
         fi
         
-    - name: Pull Subtree
+    - name: Checkout
       run: |
         git checkout main
 
