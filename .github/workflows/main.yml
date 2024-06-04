@@ -20,6 +20,9 @@ jobs:
       with:
         ref: main
         
+    - name: Git Pull Action
+      run: git pull
+      
     - name: Check if TargetFolder exists
       id: check_target_folder
       run: |
