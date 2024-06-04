@@ -21,4 +21,8 @@ jobs:
         cd ACTS-Solutions
         git checkout main
         git subtree pull --prefix=ACTS-VAT-Tax-Accelerator https://username:${{ secrets.GITHUBPAT }}@github.com/HMXCorp/ACTS-VAT-Tax-Accelerator.git main
-        git push
+        git subtree pull --prefix=ACTS-Procurement-Accelerator https://username:${{ secrets.GITHUBPAT }}@github.com/HMXCorp/ACTS-Procurement-Accelerator.git main
+        git subtree pull --prefix=PubSec-Info-Assistant https://username:${{ secrets.GITHUBPAT }}@github.com/microsoft/PubSec-Info-Assistant.git main
+        git subtree pull --prefix=beneficial-ownership-engine https://username:${{ secrets.GITHUBPAT }}@github.com/mbarnettHMX/beneficial-ownership-engine.git main
+        git subtree pull --prefix=eIAD https://username:${{ secrets.GITHUBPAT }}@github.com/microsoft/eIAD.git main
+
